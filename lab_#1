@@ -3,13 +3,13 @@ x = [3,4,5,6,7,8]
 print (x[0], x[2],x[-2])
 def tess (x,n):
     return x[n]
-print(tess(x,0),tess(x,2),tess(x,-2))
+print(tess(x,0),tess(x,2),tess(x,-2))#Если индекс больше,чем длина списка, тогда появляется ошибка IndexError
 
 #2
 x = [1,2,3,4,5,6,7,8,9]
 def tess (x,N):
     return x[N]**N
-print(tess(x,4))
+print(tess(x,4))#Если индекс больше,чем длина списка, тогда появляется ошибка IndexError
 
 #3
 s = 'машакоооошка'
@@ -49,17 +49,22 @@ def check_password(password):
     count_digit = 0
     count_upper = 0
     count_lower = 0
+    count_spec = 0
     for s in password:
         if s.isdigit ():
             count_digit += 1
         if s.isupper ():
             count_upper += 1
         if s.islower ():
-            count_lower +=1
+            count_lower += 1
+        if s in ("!@#$%^&*()_-+=]}[{:;'/?/.><,`~№"):
+            count_spec += 1
     if count_digit>=1 and count_upper>0 and count_lower>0 and len(password)>=16:
-         print("Отличный пароль")
-    else:
-         print("Плохой пароль")
+        print("Отличный пароль")
+    if count_spec>0:
+        print("Плохой пароль")
+
+check_password("J128a&dkUOR0@lP4")#смогла исправить только так
 
 check_password("J128ahdkUOR04lP9")
 #8
@@ -75,17 +80,17 @@ def flatten(x):
 print(flatten(l))
 
 #9
-dict = {
-    'Яблоко' : 30000,
+dict = { #принимается словарь dict 
+    'Яблоко' : 30000, #в котором ключи это строка "Яблоко" и значение числа 30000
     'Апельсин' : 10000,
     'Банан' : 2000
 }
-print(max(dict, key=dict.get))
+print(max(dict, key=dict.get)) #для нахождения максимального числа используется max, функция перебрает все значения ключей в словаре dict и выводит максимальное
 
 #10
-from collections import Counter
-numbers = [1,2,3,1,3]
-def non_uniq(numbers):
-    counter = Counter(numbers)
-    return [n for n in numbers if counter[n] > 1]
+from collections import Counter #counter подсчитывает кол-во повторений значений
+numbers = [1,2,3,1,3] #список с элементами
+def non_uniq(numbers): #функция, которая ищет неукальный элемент
+    counter = Counter(numbers) 
+    return [n for n in numbers if counter[n] > 1] #функция находит повторяющийся элемент в списке, возвращает новый список содержащий элементы, которые встречаются более одного раза
 print(non_uniq(numbers))
